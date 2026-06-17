@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TemuOracle · sovereign enterprise hub</title>
+<meta name="description" content="The same enterprise software, for the price your wallet recognised. Sovereign single-file hub indexing the Fall* suite — 17 tools replacing Oracle / NetSuite. Prime 521 · MIT.">
+<meta name="theme-color" content="#ff8c00">
+<link rel="manifest" href='data:application/manifest+json,{"name":"TemuOracle","short_name":"TemuOracle","start_url":"./","display":"standalone","background_color":"%230b0a0f","theme_color":"%23ff8c00","icons":[{"src":"data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 192 192%27><rect width=%27192%27 height=%27192%27 fill=%27%230b0a0f%27 rx=%2828%27/><text x=%2796%27 y=%27130%27 font-family=%27Georgia, serif%27 font-size=%27108%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%23ff8c00%27>◊</text></svg>","sizes":"192x192","type":"image/svg+xml"}]}'>
+<style>
+:root{
+  --void:#0b0a0f; --void-2:#13121a; --ink:#1a1922; --ink-2:#22212c;
+  --line:#2a2934; --line-soft:#1f1e28;
+  --cream:#e6e1d6; --cream-dim:#a8a395; --cream-muted:#6e6a5e;
+  --brass:#b8974a; --amber:#ff8c00; --ox:#8b1a1a;
+  --green:#4ade80; --red:#ef4444; --blue:#60a5fa; --yellow:#fbbf24;
+  --serif:Georgia,'Libre Baskerville',ui-serif,serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'IBM Plex Mono','SF Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--void);color:var(--cream);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(ellipse at top,#15131c 0%,var(--void) 60%) fixed}
+a{color:var(--amber);text-decoration:none}
+a:hover{color:var(--brass)}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+input,textarea{font:inherit;color:inherit;background:none;border:none;outline:none}
+
+/* HEADER */
+header{height:42px;display:flex;align-items:center;gap:14px;padding:0 16px;border-bottom:1px solid var(--line);background:var(--void-2);position:sticky;top:0;z-index:50}
+.brand{display:flex;align-items:baseline;gap:8px;cursor:pointer}
+.mark{font-family:var(--serif);font-size:22px;font-weight:700;background:linear-gradient(135deg,var(--brass),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.brand-name{font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:.02em}
+.brand-sub{font-family:var(--mono);font-size:10px;color:var(--cream-muted);letter-spacing:.08em}
+.hdr-spacer{flex:1}
+.hdr-btn{padding:6px 10px;border:1px solid var(--line);border-radius:4px;font-family:var(--mono);font-size:11px;color:var(--cream-dim);background:var(--ink);transition:all .12s}
+.hdr-btn:hover{border-color:var(--brass);color:var(--cream)}
+.hdr-btn.active{border-color:var(--amber);color:var(--amber)}
+.tier-badge{font-family:var(--mono);font-size:10px;padding:4px 8px;border:1px solid var(--line);border-radius:3px;color:var(--cream-muted);letter-spacing:.05em}
+.tier-badge.t3{color:var(--green);border-color:var(--green)}
+
+/* HERO */
+.hero{padding:64px 24px 40px;text-align:center;border-bottom:1px solid var(--line-soft);background:linear-gradient(180deg,transparent 0%,rgba(184,151,74,.03) 100%)}
+.hero-mark{font-family:var(--serif);font-size:84px;font-weight:700;background:linear-gradient(135deg,var(--brass),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:14px}
+.hero-title{font-family:var(--serif);font-size:48px;font-weight:700;letter-spacing:-.02em;margin-bottom:18px}
+.hero-tag{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--cream-dim);max-width:720px;margin:0 auto 28px}
+.hero-meta{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--cream-muted);letter-spacing:.06em}
+.hero-meta span{padding:5px 10px;border:1px solid var(--line);border-radius:3px}
+.engine-toggle{margin-top:24px;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line);border-radius:4px;background:var(--ink);font-family:var(--mono);font-size:11px;color:var(--cream-muted)}
+.engine-toggle label{cursor:pointer}
+.engine-toggle input{width:160px;padding:3px 6px;background:var(--void);border:1px solid var(--line);border-radius:3px;color:var(--cream);font-family:var(--mono);font-size:11px}
+
+/* SECTION */
+.section{max-width:1180px;margin:0 auto;padding:56px 24px}
+.section h2{font-family:var(--serif);font-size:28px;font-weight:600;margin-bottom:8px;letter-spacing:-.01em}
+.section .sub{color:var(--cream-dim);font-size:13px;margin-bottom:28px;max-width:640px}
+
+/* STACK DIAGRAM */
+.stack-wrap{background:var(--ink);border:1px solid var(--line);border-radius:6px;padding:28px;overflow:hidden}
+.stack-svg{width:100%;height:auto;max-height:480px;display:block}
+.stack-layer{cursor:pointer;transition:opacity .15s}
+.stack-layer:hover{opacity:.7}
+.stack-label{font-family:var(--mono);font-size:11px;fill:var(--cream);letter-spacing:.08em;pointer-events:none}
+.stack-tools{font-family:var(--mono);font-size:10px;fill:var(--cream-dim);pointer-events:none}
+.stack-meta{font-family:var(--mono);font-size:9px;fill:var(--cream-muted);letter-spacing:.05em;pointer-events:none}
+
+/* CARDS GRID */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--ink);border:1px solid var(--line);border-radius:5px;padding:18px;display:flex;flex-direction:column;gap:10px;transition:all .12s;position:relative}
+.card:hover{border-color:var(--brass);transform:translateY(-1px)}
+.card-head{display:flex;align-items:flex-start;gap:12px}
+.card-icon{font-family:var(--serif);font-size:32px;color:var(--amber);line-height:1;width:42px;text-align:center;flex-shrink:0}
+.card-titles{flex:1;min-width:0}
+.card-name{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--cream);margin-bottom:2px}
+.card-replaces{font-family:var(--mono);font-size:10px;color:var(--cream-muted);letter-spacing:.04em}
+.card-purpose{font-size:12.5px;color:var(--cream-dim);line-height:1.45;min-height:34px}
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:8px;border-top:1px solid var(--line-soft)}
+.card-status{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--cream-muted);letter-spacing:.04em}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--yellow);box-shadow:0 0 6px currentColor}
+.dot.live{background:var(--green);color:var(--green)}
+.dot.fail{background:var(--red);color:var(--red)}
+.dot.pending{background:var(--yellow);color:var(--yellow)}
+.card-open{padding:5px 14px;border:1px solid var(--brass);border-radius:3px;font-family:var(--mono);font-size:10.5px;color:var(--brass);letter-spacing:.08em;transition:all .12s}
+.card-open:hover{background:var(--brass);color:var(--void)}
+.card.new::after{content:'NEW';position:absolute;top:8px;right:8px;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--amber);border:1px solid var(--amber);padding:2px 5px;border-radius:2px}
+
+/* PRICING TABLE */
+.pricing{background:var(--ink);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.pricing-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.pricing-tbl th{background:var(--ink-2);font-family:var(--mono);font-size:11px;font-weight:500;color:var(--cream-muted);letter-spacing:.08em;text-align:left;padding:14px 18px;border-bottom:1px solid var(--line)}
+.pricing-tbl td{padding:16px 18px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.pricing-tbl tr:last-child td{border-bottom:none}
+.pricing-tbl tr.ours{background:rgba(255,140,0,.05)}
+.pricing-tbl tr.ours td:first-child{color:var(--amber);font-weight:600}
+.pricing-tbl .vendor{font-family:var(--serif);font-size:15px;color:var(--cream)}
+.pricing-tbl .cost{font-family:var(--mono);font-size:13px;color:var(--cream-dim)}
+.pricing-tbl .cost strong{color:var(--cream)}
+.ours .cost strong{color:var(--amber)}
+.pricing-foot{padding:14px 18px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;color:var(--cream-muted);line-height:1.6;background:var(--void-2)}
+
+/* ESTATE LINKS */
+.estate{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.estate a{display:block;padding:16px;background:var(--ink);border:1px solid var(--line);border-radius:5px;color:var(--cream);transition:all .12s}
+.estate a:hover{border-color:var(--brass);color:var(--brass)}
+.estate-name{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:4px}
+.estate-desc{font-family:var(--mono);font-size:10.5px;color:var(--cream-muted);letter-spacing:.04em}
+
+/* PALETTE (Ω autopilot) */
+.palette-bg{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding-top:14vh;z-index:100}
+.palette-bg.open{display:flex}
+.palette{width:min(640px,92vw);background:var(--ink);border:1px solid var(--brass);border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,.6);overflow:hidden}
+.palette-hd{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.palette-hd .glyph{font-family:var(--serif);font-size:22px;color:var(--amber);line-height:1}
+.palette-hd input{flex:1;font-family:var(--mono);font-size:14px;color:var(--cream);padding:4px 0}
+.palette-hd .badge{font-family:var(--mono);font-size:10px;padding:3px 8px;border:1px solid var(--line);border-radius:3px;color:var(--cream-muted);letter-spacing:.05em}
+.palette-hd .badge.t3{color:var(--green);border-color:var(--green)}
+.palette-bd{max-height:60vh;overflow-y:auto;padding:8px 0}
+.palette-row{display:flex;align-items:center;gap:14px;padding:10px 18px;cursor:pointer;border-left:2px solid transparent}
+.palette-row:hover,.palette-row.sel{background:var(--ink-2);border-left-color:var(--amber)}
+.palette-row .ico{font-family:var(--serif);font-size:20px;color:var(--amber);width:24px;text-align:center}
+.palette-row .nm{font-family:var(--serif);font-size:14px;color:var(--cream);font-weight:600}
+.palette-row .desc{font-size:12px;color:var(--cream-dim);font-family:var(--mono);margin-top:2px}
+.palette-row .meta{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--cream-muted);letter-spacing:.05em}
+.palette-empty{padding:20px 18px;color:var(--cream-muted);font-family:var(--mono);font-size:11px;text-align:center}
+.palette-foot{padding:8px 18px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--cream-muted);letter-spacing:.05em;display:flex;justify-content:space-between}
+.palette-foot kbd{padding:1px 5px;background:var(--void);border:1px solid var(--line);border-radius:2px;font-family:var(--mono);font-size:9.5px;color:var(--cream-dim)}
+
+/* SETTINGS MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:90;padding:20px}
+.modal-bg.open{display:flex}
+.modal{width:min(560px,100%);max-height:90vh;overflow-y:auto;background:var(--ink);border:1px solid var(--brass);border-radius:6px}
+.modal-hd{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.modal-hd h3{font-family:var(--serif);font-size:18px;font-weight:600}
+.modal-bd{padding:20px}
+.modal-bd .field{margin-bottom:18px}
+.modal-bd label{display:block;font-family:var(--mono);font-size:10.5px;color:var(--cream-dim);margin-bottom:6px;letter-spacing:.05em}
+.modal-bd input{width:100%;padding:9px 12px;background:var(--void);border:1px solid var(--line);border-radius:3px;color:var(--cream);font-family:var(--mono);font-size:12.5px}
+.modal-bd input:focus{border-color:var(--brass)}
+.modal-bd .hint{font-family:var(--mono);font-size:10px;color:var(--cream-muted);margin-top:5px}
+.modal-bd .row{display:flex;gap:10px;margin-top:14px}
+.btn{padding:9px 16px;border:1px solid var(--line);border-radius:3px;font-family:var(--mono);font-size:11px;color:var(--cream-dim);letter-spacing:.06em;background:var(--ink-2);transition:all .12s}
+.btn:hover{border-color:var(--brass);color:var(--cream)}
+.btn.primary{border-color:var(--amber);color:var(--amber)}
+.btn.primary:hover{background:var(--amber);color:var(--void)}
+
+footer{padding:40px 24px;text-align:center;font-family:var(--mono);font-size:10.5px;color:var(--cream-muted);letter-spacing:.06em;border-top:1px solid var(--line);margin-top:40px}
+footer .seal{color:var(--brass)}
+
+@media(max-width:900px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .hero-title{font-size:36px}
+  .hero-mark{font-size:64px}
+  .hero-tag{font-size:16px}
+}
+@media(max-width:640px){
+  .cards{grid-template-columns:1fr}
+  .section{padding:40px 16px}
+  .hero{padding:40px 16px 28px}
+  .hero-title{font-size:28px}
+  .hero-mark{font-size:54px}
+  .hero-tag{font-size:15px}
+  header{gap:8px;padding:0 10px}
+  .brand-sub{display:none}
+  .hdr-btn{font-size:10px;padding:5px 8px}
+  .pricing-tbl th,.pricing-tbl td{padding:10px 12px;font-size:12px}
+  .pricing-tbl .vendor{font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})">
+    <span class="mark">◊</span>
+    <span class="brand-name" id="brandName">TemuOracle</span>
+    <span class="brand-sub" id="brandSub">FallEnterprise</span>
+  </div>
+  <div class="hdr-spacer"></div>
+  <button class="hdr-btn" onclick="toggleStackView()" id="stackBtn">stack view</button>
+  <button class="hdr-btn" onclick="openPalette()" title="Ctrl+K">Ω autopilot</button>
+  <button class="hdr-btn" onclick="exportManifest()" title="download tool manifest">manifest</button>
+  <span class="tier-badge" id="tierBadge">offline</span>
+  <button class="hdr-btn" onclick="openSettings()">settings</button>
+</header>
+
+<a id="top"></a>
+
+<section class="hero">
+  <div class="hero-mark">◊</div>
+  <h1 class="hero-title" id="heroTitle">TemuOracle</h1>
+  <p class="hero-tag">the same enterprise software, for the price your wallet recognised.</p>
+  <div class="hero-meta">
+    <span>17 tools</span>
+    <span>prime 521</span>
+    <span>v1.0.0</span>
+    <span>MIT · sovereign</span>
+    <span>◊·κ=1</span>
+  </div>
+  <div class="engine-toggle">
+    <label for="engineInput">engine name:</label>
+    <input id="engineInput" type="text" maxlength="32" placeholder="TemuOracle">
+    <button class="hdr-btn" onclick="applyEngineName()" style="padding:3px 8px;font-size:10px">apply</button>
+  </div>
+</section>
+
+<section class="section" id="stack">
+  <h2>the stack</h2>
+  <p class="sub">A real ERP architecture, decomposed into 17 sovereign files. Click any layer to open the tool that owns it.</p>
+  <div class="stack-wrap">
+    <svg class="stack-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="brassGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#b8974a" stop-opacity="0.25"/>
+          <stop offset="1" stop-color="#ff8c00" stop-opacity="0.25"/>
+        </linearGradient>
+        <linearGradient id="brassGradStrong" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#b8974a" stop-opacity="0.6"/>
+          <stop offset="1" stop-color="#ff8c00" stop-opacity="0.6"/>
+        </linearGradient>
+      </defs>
+
+      <!-- L5: REPORTING -->
+      <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallreport/','_blank')">
+        <rect x="60" y="30" width="780" height="70" rx="4" fill="url(#brassGradStrong)" stroke="#ff8c00" stroke-width="1"/>
+        <text x="80" y="58" class="stack-label">▣ REPORTING</text>
+        <text x="80" y="80" class="stack-tools">FallReport · pivots, dashboards, KPI canvases · replaces Oracle Analytics / Hyperion</text>
+        <text x="820" y="58" class="stack-meta" text-anchor="end">L5</text>
+      </g>
+
+      <!-- L4: APP BUILDER -->
+      <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallbuild/','_blank')">
+        <rect x="60" y="115" width="780" height="70" rx="4" fill="url(#brassGradStrong)" stroke="#ff8c00" stroke-width="1"/>
+        <text x="80" y="143" class="stack-label">⚙ APP BUILDER</text>
+        <text x="80" y="165" class="stack-tools">FallBuild · drag-drop low-code surfaces · replaces Oracle APEX</text>
+        <text x="820" y="143" class="stack-meta" text-anchor="end">L4</text>
+      </g>
+
+      <!-- L3: CRM / OPS / MKTG (the wide middle) -->
+      <g>
+        <rect x="60" y="200" width="780" height="170" rx="4" fill="url(#brassGrad)" stroke="#b8974a" stroke-width="1"/>
+        <text x="80" y="226" class="stack-label">◴ CRM · OPS · MKTG</text>
+        <text x="820" y="226" class="stack-meta" text-anchor="end">L3</text>
+
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallaccount/','_blank')"><text x="80" y="252" class="stack-tools">☷ FallAccount</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallaccount-trades/','_blank')"><text x="210" y="252" class="stack-tools">☶ FallAccount Trades</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallforce/','_blank')"><text x="380" y="252" class="stack-tools">✦ FallForce</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallreach/','_blank')"><text x="490" y="252" class="stack-tools">☼ FallReach</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallcrm/','_blank')"><text x="600" y="252" class="stack-tools">▦ FallCRM</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallsalescrm/','_blank')"><text x="700" y="252" class="stack-tools">☰ FallSalesCRM</text></g>
+
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/falllist/','_blank')"><text x="80" y="282" class="stack-tools">✉ FallList</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallslot/','_blank')"><text x="180" y="282" class="stack-tools">☐ FallSlot</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallform/','_blank')"><text x="280" y="282" class="stack-tools">▤ FallForm</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallflow/','_blank')"><text x="380" y="282" class="stack-tools">◴ FallFlow</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallinvoice/','_blank')"><text x="480" y="282" class="stack-tools">£ FallInvoice</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallap/','_blank')"><text x="580" y="282" class="stack-tools">⊟ FallAP</text></g>
+        <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallcore-factory/','_blank')"><text x="660" y="282" class="stack-tools">⚒ fallcore-factory</text></g>
+
+        <text x="80" y="338" class="stack-meta">13 surfaces · replaces NetSuite CRM / SDR / Marketing / AR / AP / Cash / Calendar / Forms / multi-tenant deploy</text>
+      </g>
+
+      <!-- L2: LEDGER -->
+      <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallledger/','_blank')">
+        <rect x="60" y="385" width="780" height="60" rx="4" fill="url(#brassGradStrong)" stroke="#ff8c00" stroke-width="1"/>
+        <text x="80" y="412" class="stack-label">⚖ LEDGER</text>
+        <text x="80" y="432" class="stack-tools">FallLedger · GL, journal entries, P&amp;L, trial balance · replaces Oracle GL / NetSuite ledger</text>
+        <text x="820" y="412" class="stack-meta" text-anchor="end">L2</text>
+      </g>
+
+      <!-- L1: DATA -->
+      <g class="stack-layer" onclick="window.open('https://sjgant80-hub.github.io/fallbase/','_blank')">
+        <rect x="60" y="460" width="780" height="50" rx="4" fill="url(#brassGradStrong)" stroke="#ff8c00" stroke-width="1"/>
+        <text x="80" y="485" class="stack-label">⛁ DATA</text>
+        <text x="80" y="502" class="stack-tools">FallBase · schemas, tables, sovereign queries · replaces Oracle Database</text>
+        <text x="820" y="485" class="stack-meta" text-anchor="end">L1</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section class="section" id="tools">
+  <h2>the suite</h2>
+  <p class="sub">Every Fall* tool, indexed. Each card pings its own URL on boot — green is live, red is failed, yellow is pending. Click "open" to launch in a new tab.</p>
+  <div class="cards" id="cardsGrid"></div>
+</section>
+
+<section class="section" id="pricing">
+  <h2>pricing comparison</h2>
+  <p class="sub">An audit-table view of what an enterprise stack costs by vendor. All figures per user, per year, list pricing, before consulting fees.</p>
+  <div class="pricing">
+    <table class="pricing-tbl">
+      <thead>
+        <tr><th style="width:30%">VENDOR</th><th style="width:25%">ANNUAL COST</th><th>WHAT YOU GET</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="vendor">Oracle Cloud Suite</td>
+          <td class="cost"><strong>£15k – £50k</strong> / user / yr</td>
+          <td class="cost">DB · ERP · GL · HR · Analytics · APEX · 18-month implementation · perpetual upsell</td>
+        </tr>
+        <tr>
+          <td class="vendor">NetSuite ERP</td>
+          <td class="cost"><strong>£1,500 – £3,000</strong> / user / yr</td>
+          <td class="cost">books · CRM · invoicing · AP · marketing · 6-month implementation · per-module add-ons</td>
+        </tr>
+        <tr>
+          <td class="vendor">SAP Business One</td>
+          <td class="cost"><strong>£2,500 – £5,000</strong> / user / yr</td>
+          <td class="cost">books · CRM · inventory · reporting · 9-month implementation · per-license seat tax</td>
+        </tr>
+        <tr class="ours">
+          <td class="vendor">TemuOracle</td>
+          <td class="cost"><strong>£0</strong> forever</td>
+          <td class="cost">17 sovereign single-file tools · runs from file:// · IndexedDB · MIT · zero implementation · fork-and-rebrand</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pricing-foot">
+      Vendor pricing reflects 2025 list rates as published by each vendor and re-sellers; actual quotes vary. "TemuOracle" puns Temu (trademark of PDD Holdings) and Oracle (trademark of Oracle Corporation), used in parody commentary on enterprise software pricing — not affiliated with, endorsed by, or connected to either company. This is sovereign MIT software.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="estate">
+  <h2>estate</h2>
+  <p class="sub">Adjacent sovereign infrastructure — directories, search, guild, the wider AI-native estate.</p>
+  <div class="estate">
+    <a href="https://sjgant80-hub.github.io/fall-registry/" target="_blank">
+      <div class="estate-name">fall-registry</div>
+      <div class="estate-desc">canonical tool index · primes · URLs</div>
+    </a>
+    <a href="https://sjgant80-hub.github.io/fallfind/" target="_blank">
+      <div class="estate-name">fallfind</div>
+      <div class="estate-desc">search across the entire Fall* estate</div>
+    </a>
+    <a href="https://ai-nativesolutions.com" target="_blank">
+      <div class="estate-name">ai-nativesolutions.com</div>
+      <div class="estate-desc">the studio · sovereign software practice</div>
+    </a>
+    <a href="https://sjgant80-hub.github.io/ai-craftspeople-guild/" target="_blank">
+      <div class="estate-name">AI Craftspeople Guild</div>
+      <div class="estate-desc">the guild · craft over scale</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div>TemuOracle · prime 521 · v1.0.0 · MIT · <span class="seal">◊·κ=1</span></div>
+  <div style="margin-top:6px">17 tools indexed · sovereign · forkable · runs from file://</div>
+</footer>
+
+<!-- Ω PALETTE -->
+<div class="palette-bg" id="palette" onclick="if(event.target===this)closePalette()">
+  <div class="palette">
+    <div class="palette-hd">
+      <span class="glyph">Ω</span>
+      <input id="pInput" placeholder="overdue invoices · post a journal entry · cashflow this month · build a tool for X" autocomplete="off">
+      <span class="badge" id="pTier">T0</span>
+    </div>
+    <div class="palette-bd" id="pBody"></div>
+    <div class="palette-foot">
+      <span><kbd>↑↓</kbd> nav · <kbd>↵</kbd> open · <kbd>esc</kbd> close</span>
+      <span>T3 fallback parses arbitrary intent</span>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-bg" id="settingsModal" onclick="if(event.target===this)closeSettings()">
+  <div class="modal">
+    <div class="modal-hd">
+      <h3>settings</h3>
+      <button class="btn" onclick="closeSettings()">close</button>
+    </div>
+    <div class="modal-bd">
+      <div class="field">
+        <label>engine name (forkable brand · doctrine §13)</label>
+        <input id="setBrand" type="text" maxlength="32" placeholder="TemuOracle">
+        <div class="hint">Override the wordmark. Default ships as TemuOracle; engine slug stays <code>temuoracle</code>.</div>
+      </div>
+      <div class="field">
+        <label>Anthropic API key (T3 BYOK · Claude)</label>
+        <input id="setAnth" type="password" placeholder="sk-ant-...">
+      </div>
+      <div class="field">
+        <label>OpenAI API key (T3 BYOK · GPT)</label>
+        <input id="setOAI" type="password" placeholder="sk-...">
+      </div>
+      <div class="field">
+        <label>Gemini API key (T3 BYOK · Google)</label>
+        <input id="setGem" type="password" placeholder="AIza...">
+      </div>
+      <div class="field">
+        <label>OpenRouter API key (T3 BYOK · multi-model)</label>
+        <input id="setOR" type="password" placeholder="sk-or-...">
+        <div class="hint">All keys stored in IndexedDB · never leave the device · used by the Ω autopilot fallback only.</div>
+      </div>
+      <div class="row">
+        <button class="btn primary" onclick="saveSettings()">save</button>
+        <button class="btn" onclick="clearSettings()">clear all</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOOLNAME='temuoracle';
+const TOOLSHORT='TemuOracle';
+const PRIME=521;
+const VERSION='1.0.0';
+
+// ============================================================
+// TOOL CATALOG · the 17 tools
+// ============================================================
+const TOOLS = [
+  // Existing 13
+  {id:'fallaccount',name:'FallAccount',icon:'☷',replaces:'NetSuite books / Quickbooks',purpose:'Books, ledger entries, reconciliation.',url:'https://sjgant80-hub.github.io/fallaccount/',layer:'L3',isNew:false},
+  {id:'fallaccount-trades',name:'FallAccount Trades',icon:'☶',replaces:'NetSuite trade desk',purpose:'Portfolio, holdings, positions, trade desk.',url:'https://sjgant80-hub.github.io/fallaccount-trades/',layer:'L3',isNew:false},
+  {id:'fallforce',name:'FallForce',icon:'✦',replaces:'NetSuite CRM',purpose:'Sales process, deals, pipeline, opportunities.',url:'https://sjgant80-hub.github.io/fallforce/',layer:'L3',isNew:false},
+  {id:'fallreach',name:'FallReach',icon:'☼',replaces:'NetSuite SDR',purpose:'Outbound SDR, prospecting, cold sequences.',url:'https://sjgant80-hub.github.io/fallreach/',layer:'L3',isNew:false},
+  {id:'fallcrm',name:'FallCRM',icon:'▦',replaces:'NetSuite CRM (alt)',purpose:'Customer records, contacts, account history.',url:'https://sjgant80-hub.github.io/fallcrm/',layer:'L3',isNew:false},
+  {id:'fallsalescrm',name:'FallSalesCRM',icon:'☰',replaces:'Salesforce / NetSuite Sales',purpose:'Salesforce-shaped CRM, leads, pipeline.',url:'https://sjgant80-hub.github.io/fallsalescrm/',layer:'L3',isNew:false},
+  {id:'falllist',name:'FallList',icon:'✉',replaces:'NetSuite marketing email',purpose:'Newsletter, mailing list, email blasts.',url:'https://sjgant80-hub.github.io/falllist/',layer:'L3',isNew:false},
+  {id:'fallslot',name:'FallSlot',icon:'☐',replaces:'NetSuite calendar booking',purpose:'Calendar booking, appointments, meeting slots.',url:'https://sjgant80-hub.github.io/fallslot/',layer:'L3',isNew:false},
+  {id:'fallform',name:'FallForm',icon:'▤',replaces:'NetSuite intake forms',purpose:'Intake forms, surveys, structured input.',url:'https://sjgant80-hub.github.io/fallform/',layer:'L3',isNew:false},
+  {id:'fallflow',name:'FallFlow',icon:'◴',replaces:'NetSuite cash runway',purpose:'Cashflow, runway, burn rate, float.',url:'https://sjgant80-hub.github.io/fallflow/',layer:'L3',isNew:false},
+  {id:'fallinvoice',name:'FallInvoice',icon:'£',replaces:'NetSuite billing',purpose:'Invoicing, receivables, overdue chasers.',url:'https://sjgant80-hub.github.io/fallinvoice/',layer:'L3',isNew:false},
+  {id:'fallap',name:'FallAP',icon:'⊟',replaces:'NetSuite accounts payable',purpose:'Accounts payable, vendor bills, expenses.',url:'https://sjgant80-hub.github.io/fallap/',layer:'L3',isNew:false},
+  {id:'fallcore-factory',name:'fallcore-factory',icon:'⚒',replaces:'NetSuite multi-tenant deploy',purpose:'Multi-tenant deploy, brand factory, tenancy.',url:'https://sjgant80-hub.github.io/fallcore-factory/',layer:'L3',isNew:false},
+  // 4 new ones shipping in parallel
+  {id:'fallbase',name:'FallBase',icon:'⛁',replaces:'Oracle Database',purpose:'Schemas, tables, sovereign queries, the data layer.',url:'https://sjgant80-hub.github.io/fallbase/',layer:'L1',isNew:true},
+  {id:'fallledger',name:'FallLedger',icon:'⚖',replaces:'Oracle GL / NetSuite ledger',purpose:'GL, journal entries, P&L, trial balance, VAT/MTD.',url:'https://sjgant80-hub.github.io/fallledger/',layer:'L2',isNew:true},
+  {id:'fallbuild',name:'FallBuild',icon:'⚙',replaces:'Oracle APEX',purpose:'Drag-drop low-code app builder, widgets.',url:'https://sjgant80-hub.github.io/fallbuild/',layer:'L4',isNew:true},
+  {id:'fallreport',name:'FallReport',icon:'▣',replaces:'Oracle Analytics / Hyperion',purpose:'Pivots, dashboards, charts, KPI canvases.',url:'https://sjgant80-hub.github.io/fallreport/',layer:'L5',isNew:true},
+];
+
+// ============================================================
+// T0 ROUTER · keyword regex table
+// ============================================================
+const ROUTES = [
+  { tool: 'fallaccount', verbs: /\b(account|book|ledger entry|reconcile)\b/i },
+  { tool: 'fallaccount-trades', verbs: /\b(trade|portfolio|holdings|position)\b/i },
+  { tool: 'fallforce', verbs: /\b(force|sales process|deal|opportunity|pipeline)\b/i },
+  { tool: 'fallreach', verbs: /\b(reach|outreach|sdr|cold|prospect|sequence)\b/i },
+  { tool: 'fallcrm', verbs: /\b(crm|customer record|contact)\b/i },
+  { tool: 'fallsalescrm', verbs: /\b(salesforce|sales crm|lead)\b/i },
+  { tool: 'falllist', verbs: /\b(newsletter|email blast|mailing list)\b/i },
+  { tool: 'fallslot', verbs: /\b(calendar|booking|appointment|meeting slot)\b/i },
+  { tool: 'fallform', verbs: /\b(form|intake|survey)\b/i },
+  { tool: 'fallflow', verbs: /\b(cashflow|runway|burn|float)\b/i },
+  { tool: 'fallinvoice', verbs: /\b(invoice|bill|receivable|overdue)\b/i },
+  { tool: 'fallap', verbs: /\b(payable|vendor bill|expense|ap )\b/i },
+  { tool: 'fallcore-factory', verbs: /\b(factory|brand|tenant|deploy)\b/i },
+  { tool: 'fallbase', verbs: /\b(database|schema|sql|query|table)\b/i },
+  { tool: 'fallledger', verbs: /\b(journal|p&l|trial balance|balance sheet|gl |vat|mtd)\b/i },
+  { tool: 'fallbuild', verbs: /\b(low.?code|app builder|drag.?drop|widget)\b/i },
+  { tool: 'fallreport', verbs: /\b(report|pivot|dashboard|chart|analytics|kpi)\b/i },
+];
+
+function routeT0(q){
+  if(!q||!q.trim())return null;
+  for(const r of ROUTES){
+    if(r.verbs.test(q)){
+      const t=TOOLS.find(x=>x.id===r.tool);
+      if(t)return{tool:t,hint:q.trim(),via:'T0'};
+    }
+  }
+  return null;
+}
+
+// ============================================================
+// STATE + INDEXEDDB
+// ============================================================
+const state = {
+  settings: { brand:'TemuOracle', anthropicKey:'', openaiKey:'', geminiKey:'', openrouterKey:'' },
+  status: {} // toolId -> 'pending'|'live'|'fail'
+};
+
+let db=null;
+function openDB(){
+  return new Promise((res,rej)=>{
+    const r=indexedDB.open('temuoracle',1);
+    r.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains('kv'))d.createObjectStore('kv')};
+    r.onsuccess=e=>{db=e.target.result;res(db)};
+    r.onerror=e=>rej(e);
+  });
+}
+function dbGet(k){return new Promise(r=>{if(!db)return r(null);const t=db.transaction('kv','readonly').objectStore('kv').get(k);t.onsuccess=()=>r(t.result);t.onerror=()=>r(null)})}
+function dbSet(k,v){return new Promise(r=>{if(!db)return r();const t=db.transaction('kv','readwrite').objectStore('kv').put(v,k);t.onsuccess=()=>r();t.onerror=()=>r()})}
+
+async function loadSettings(){
+  try{
+    await openDB();
+    const s=await dbGet('settings');
+    if(s)state.settings={...state.settings,...s};
+  }catch(e){}
+  applyBrand();
+  document.getElementById('engineInput').value=state.settings.brand;
+}
+async function saveSettings(){
+  state.settings.brand=document.getElementById('setBrand').value.trim()||'TemuOracle';
+  state.settings.anthropicKey=document.getElementById('setAnth').value.trim();
+  state.settings.openaiKey=document.getElementById('setOAI').value.trim();
+  state.settings.geminiKey=document.getElementById('setGem').value.trim();
+  state.settings.openrouterKey=document.getElementById('setOR').value.trim();
+  await dbSet('settings',state.settings);
+  applyBrand();
+  document.getElementById('engineInput').value=state.settings.brand;
+  updateTierBadge();
+  closeSettings();
+}
+async function clearSettings(){
+  state.settings={brand:'TemuOracle',anthropicKey:'',openaiKey:'',geminiKey:'',openrouterKey:''};
+  await dbSet('settings',state.settings);
+  applyBrand();
+  document.getElementById('engineInput').value='TemuOracle';
+  ['setBrand','setAnth','setOAI','setGem','setOR'].forEach(id=>document.getElementById(id).value='');
+  updateTierBadge();
+}
+
+function applyBrand(){
+  const b=state.settings.brand||'TemuOracle';
+  document.getElementById('brandName').textContent=b;
+  document.getElementById('heroTitle').textContent=b;
+  document.title=b+' · sovereign enterprise hub';
+}
+
+function applyEngineName(){
+  const v=document.getElementById('engineInput').value.trim()||'TemuOracle';
+  state.settings.brand=v;
+  dbSet('settings',state.settings);
+  applyBrand();
+}
+
+// ============================================================
+// CARDS GRID
+// ============================================================
+function renderCards(){
+  const g=document.getElementById('cardsGrid');
+  g.innerHTML=TOOLS.map(t=>`
+    <div class="card${t.isNew?' new':''}" data-id="${t.id}">
+      <div class="card-head">
+        <div class="card-icon">${t.icon}</div>
+        <div class="card-titles">
+          <div class="card-name">${t.name}</div>
+          <div class="card-replaces">replaces ${t.replaces}</div>
+        </div>
+      </div>
+      <div class="card-purpose">${t.purpose}</div>
+      <div class="card-foot">
+        <div class="card-status"><span class="dot pending" id="dot-${t.id}"></span><span id="st-${t.id}">pending</span> · ${t.layer}</div>
+        <a class="card-open" href="${t.url}" target="_blank" rel="noopener">open ↗</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// LIVE STATUS PINGS
+// ============================================================
+async function pingAll(){
+  for(const t of TOOLS){
+    state.status[t.id]='pending';
+    try{
+      const ctrl=new AbortController();
+      const tm=setTimeout(()=>ctrl.abort(),4000);
+      await fetch(t.url,{mode:'no-cors',signal:ctrl.signal,cache:'no-store'});
+      clearTimeout(tm);
+      state.status[t.id]='live';
+    }catch(e){
+      state.status[t.id]='fail';
+    }
+    const dot=document.getElementById('dot-'+t.id);
+    const st=document.getElementById('st-'+t.id);
+    if(dot){dot.className='dot '+state.status[t.id]}
+    if(st){st.textContent=state.status[t.id]}
+  }
+}
+
+// ============================================================
+// MANIFEST EXPORT
+// ============================================================
+function exportManifest(){
+  const manifest={
+    name:'TemuOracle',
+    slug:'temuoracle',
+    version:VERSION,
+    prime:PRIME,
+    seal:'◊·κ=1',
+    license:'MIT',
+    tagline:'the same enterprise software, for the price your wallet recognised.',
+    generated:new Date().toISOString(),
+    tools:TOOLS.map(t=>({
+      id:t.id,
+      name:t.name,
+      icon:t.icon,
+      replaces:t.replaces,
+      purpose:t.purpose,
+      url:t.url,
+      layer:t.layer,
+      isNew:t.isNew,
+      status:state.status[t.id]||'unknown'
+    })),
+    layers:{
+      L1:'DATA · FallBase',
+      L2:'LEDGER · FallLedger',
+      L3:'CRM / OPS / MKTG · 13 surfaces',
+      L4:'APP BUILDER · FallBuild',
+      L5:'REPORTING · FallReport'
+    },
+    estate:[
+      {name:'fall-registry',url:'https://sjgant80-hub.github.io/fall-registry/'},
+      {name:'fallfind',url:'https://sjgant80-hub.github.io/fallfind/'},
+      {name:'ai-nativesolutions.com',url:'https://ai-nativesolutions.com'},
+      {name:'AI Craftspeople Guild',url:'https://sjgant80-hub.github.io/ai-craftspeople-guild/'}
+    ]
+  };
+  const blob=new Blob([JSON.stringify(manifest,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='temuoracle-manifest.json';a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+// ============================================================
+// CASCADE · T0 / T2 / T3 (verbatim from doctrine)
+// ============================================================
+const Cascade={
+  async detectTier(){if(await this._probe())return'T2';const s=state.settings;if(s.anthropicKey||s.openaiKey||s.geminiKey||s.openrouterKey)return'T3';return'T0'},
+  async _probe(){if(this._p!==undefined)return this._p;try{this._p=await Promise.race([fetch('http://127.0.0.1:11434/api/tags').then(r=>r.ok),new Promise(r=>setTimeout(()=>r(false),350))])}catch(e){this._p=false}return this._p},
+  async generate(sys,user,maxTok){const s=state.settings,max=maxTok||1200;
+    if(s.anthropicKey)try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':s.anthropicKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-haiku-4-5',max_tokens:max,system:sys,messages:[{role:'user',content:user}]})});const d=await r.json();return{tier:'T3·Claude',text:d?.content?.[0]?.text||''}}catch(e){}
+    if(s.geminiKey)try{const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${s.geminiKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({systemInstruction:{parts:[{text:sys}]},contents:[{parts:[{text:user}]}]})});const d=await r.json();return{tier:'T3·Gemini',text:d?.candidates?.[0]?.content?.parts?.[0]?.text||''}}catch(e){}
+    if(s.openaiKey)try{const r=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+s.openaiKey},body:JSON.stringify({model:'gpt-4o-mini',messages:[{role:'system',content:sys},{role:'user',content:user}]})});const d=await r.json();return{tier:'T3·GPT',text:d?.choices?.[0]?.message?.content||''}}catch(e){}
+    if(s.openrouterKey)try{const r=await fetch('https://openrouter.ai/api/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+s.openrouterKey,'HTTP-Referer':location.origin},body:JSON.stringify({model:'anthropic/claude-haiku-4-5',messages:[{role:'system',content:sys},{role:'user',content:user}]})});const d=await r.json();return{tier:'T3·OpenRouter',text:d?.choices?.[0]?.message?.content||''}}catch(e){}
+    return{tier:'T0',text:null}
+  }
+};
+async function updateTierBadge(){const t=await Cascade.detectTier();const el=document.getElementById('tierBadge');if(el){el.textContent=t==='T0'?'offline':t;el.classList.toggle('t3',t!=='T0')}const pT=document.getElementById('pTier');if(pT){pT.textContent=t==='T0'?'T0':t;pT.classList.toggle('t3',t!=='T0')}}
+
+// ============================================================
+// Ω PALETTE
+// ============================================================
+let palSel=0;let palResults=[];
+function openPalette(){document.getElementById('palette').classList.add('open');setTimeout(()=>document.getElementById('pInput').focus(),50);renderPalette('')}
+function closePalette(){document.getElementById('palette').classList.remove('open');document.getElementById('pInput').value=''}
+
+function renderPalette(q){
+  const body=document.getElementById('pBody');
+  q=(q||'').trim();
+  if(!q){
+    palResults=TOOLS.slice(0,9).map(t=>({tool:t,hint:'',via:'browse'}));
+  } else {
+    const t0=routeT0(q);
+    const seen=new Set();
+    palResults=[];
+    if(t0){palResults.push(t0);seen.add(t0.tool.id)}
+    // fuzzy name match
+    const ql=q.toLowerCase();
+    for(const t of TOOLS){
+      if(seen.has(t.id))continue;
+      if(t.name.toLowerCase().includes(ql)||t.id.includes(ql)||t.replaces.toLowerCase().includes(ql)||t.purpose.toLowerCase().includes(ql)){
+        palResults.push({tool:t,hint:q,via:'match'});
+        seen.add(t.id);
+      }
+    }
+    if(palResults.length===0){
+      body.innerHTML=`<div class="palette-empty">no T0 match · press ↵ to run T3 BYOK route (needs key in settings)</div>`;
+      palSel=0;
+      return;
+    }
+  }
+  palSel=Math.min(palSel,palResults.length-1);
+  if(palSel<0)palSel=0;
+  body.innerHTML=palResults.map((r,i)=>`
+    <div class="palette-row${i===palSel?' sel':''}" data-i="${i}" onclick="palettePick(${i})">
+      <div class="ico">${r.tool.icon}</div>
+      <div>
+        <div class="nm">${r.tool.name}</div>
+        <div class="desc">${r.tool.purpose}</div>
+      </div>
+      <div class="meta">${r.via} · ${r.tool.layer}</div>
+    </div>
+  `).join('');
+}
+
+function palettePick(i){
+  const r=palResults[i];
+  if(!r)return;
+  window.open(r.tool.url,'_blank');
+  closePalette();
+}
+
+async function paletteRunT3(q){
+  const tier=await Cascade.detectTier();
+  if(tier==='T0'){
+    document.getElementById('pBody').innerHTML=`<div class="palette-empty">T0 router found no match · add a BYOK key in settings to enable T3 intent parsing</div>`;
+    return;
+  }
+  document.getElementById('pBody').innerHTML=`<div class="palette-empty">routing via ${tier}...</div>`;
+  const sys=`You are TemuOracle's router. Return ONLY valid JSON: {"tool":"<id>","hint":"<short>"}. Valid tool ids: ${TOOLS.map(t=>t.id).join(', ')}. Choose the single best tool for the user's intent.`;
+  const out=await Cascade.generate(sys,q,200);
+  try{
+    const m=out.text.match(/\{[\s\S]*\}/);
+    const j=JSON.parse(m?m[0]:out.text);
+    const t=TOOLS.find(x=>x.id===j.tool);
+    if(t){
+      document.getElementById('pBody').innerHTML=`<div class="palette-row sel" onclick="window.open('${t.url}','_blank');closePalette()"><div class="ico">${t.icon}</div><div><div class="nm">${t.name}</div><div class="desc">${j.hint||t.purpose}</div></div><div class="meta">${out.tier}</div></div>`;
+      palResults=[{tool:t,hint:j.hint||'',via:out.tier}];
+      palSel=0;
+      return;
+    }
+  }catch(e){}
+  document.getElementById('pBody').innerHTML=`<div class="palette-empty">T3 routing failed · try a different phrasing</div>`;
+}
+
+// ============================================================
+// STACK VIEW TOGGLE
+// ============================================================
+function toggleStackView(){
+  const s=document.getElementById('stack');
+  const btn=document.getElementById('stackBtn');
+  if(s.style.display==='none'){s.style.display='';btn.classList.add('active')}
+  else{s.style.display='none';btn.classList.remove('active')}
+  s.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ============================================================
+// SETTINGS MODAL
+// ============================================================
+function openSettings(){
+  document.getElementById('setBrand').value=state.settings.brand||'';
+  document.getElementById('setAnth').value=state.settings.anthropicKey||'';
+  document.getElementById('setOAI').value=state.settings.openaiKey||'';
+  document.getElementById('setGem').value=state.settings.geminiKey||'';
+  document.getElementById('setOR').value=state.settings.openrouterKey||'';
+  document.getElementById('settingsModal').classList.add('open');
+}
+function closeSettings(){document.getElementById('settingsModal').classList.remove('open')}
+
+// ============================================================
+// KEYBOARD
+// ============================================================
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openPalette();return}
+  if(e.key==='Escape'){
+    if(document.getElementById('palette').classList.contains('open')){closePalette();return}
+    if(document.getElementById('settingsModal').classList.contains('open')){closeSettings();return}
+  }
+  if(document.getElementById('palette').classList.contains('open')){
+    if(e.key==='ArrowDown'){e.preventDefault();palSel=Math.min(palSel+1,palResults.length-1);renderPalette(document.getElementById('pInput').value);return}
+    if(e.key==='ArrowUp'){e.preventDefault();palSel=Math.max(palSel-1,0);renderPalette(document.getElementById('pInput').value);return}
+    if(e.key==='Enter'){
+      e.preventDefault();
+      const q=document.getElementById('pInput').value.trim();
+      if(palResults.length>0){palettePick(palSel);return}
+      if(q)paletteRunT3(q);
+      return;
+    }
+  }
+});
+
+document.getElementById('pInput').addEventListener('input',e=>{palSel=0;renderPalette(e.target.value)});
+
+// ============================================================
+// BOOT
+// ============================================================
+(async()=>{
+  renderCards();
+  await loadSettings();
+  await updateTierBadge();
+  pingAll();
+})();
+
+// ============================================================
+// KONOMI · fallmesh · postMessage (doctrine snippets)
+// ============================================================
+window.KONOMI={active:true,tier:'sovereign',prime:PRIME,check:()=>({ok:true,tier:'sovereign'})};
+try{
+  const sig=new BroadcastChannel('fall-signal');
+  sig.postMessage({source:'temuoracle',type:'hello',prime:PRIME,version:VERSION,ts:Date.now()});
+  sig.addEventListener('message',e=>{
+    const m=e.data;
+    if(m&&m.type==='ping')sig.postMessage({source:'temuoracle',type:'pong',prime:PRIME});
+  });
+}catch(e){}
+
+window.addEventListener('message',async e=>{
+  const m=e.data;
+  if(!m||m.target!=='temuoracle'||!m.action)return;
+  let r=null;
+  if(m.action==='ping')r={ok:true,prime:PRIME,version:VERSION};
+  else if(m.action==='list')r={ok:true,count:TOOLS.length,tools:TOOLS.map(t=>({id:t.id,name:t.name,url:t.url,replaces:t.replaces,layer:t.layer}))};
+  else if(m.action==='route'){const q=(m.query||m.q||'').toString();const hit=routeT0(q);r=hit?{ok:true,tool:hit.tool.id,url:hit.tool.url,via:'T0',hint:hit.hint}:{ok:false,reason:'no T0 match'}}
+  else r={ok:false,reason:'unknown action'};
+  e.source?.postMessage({target:m.source||'*',responseTo:m.action,data:r},'*');
+});
+</script>
+</body>
+</html>
