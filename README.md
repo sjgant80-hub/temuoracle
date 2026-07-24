@@ -1,5 +1,7 @@
 # TemuOracle
 
+**Live:** [sjgant80-hub.github.io/temuoracle](https://sjgant80-hub.github.io/temuoracle/)
+
 **The same enterprise software, for the price your wallet recognised.**
 
 A sovereign single-file hub that indexes the entire Fall* enterprise suite — every NetSuite / Oracle Corp surface, replaced by a tool that runs from `file://`, stores in IndexedDB, and costs nothing forever.
