@@ -32,8 +32,8 @@ The brand is forkable. Settings → engine name. Default ships as TemuOracle; ch
 
 | Oracle slot | Annual cost | TemuOracle |
 |---|---|---|
-| Oracle Cloud Suite | £15-50k / user | £0 forever |
-| NetSuite ERP | £1.5-3k / user | £0 forever |
+| Oracle Cloud Suite | premium enterprise pricing / user | Free forever |
+| NetSuite ERP | mid-market SaaS pricing / user | Free forever |
 
 ## For developers
 
