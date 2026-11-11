@@ -6,7 +6,7 @@
 
 A sovereign single-file hub that indexes the entire Fall* enterprise suite — every NetSuite / Oracle Corp surface, replaced by a tool that runs from `file://`, stores in IndexedDB, and costs nothing forever.
 
-Prime 521 · MIT · ◊·κ=1
+Prime 521 · MIT
 
 ---
 
@@ -74,4 +74,4 @@ No build. Open `index.html`. For Pages: push to `sjgant80-hub/temuoracle`, deplo
 
 ### Estate seal
 
-◊·κ=1 · prime 521 · MIT
+MIT
